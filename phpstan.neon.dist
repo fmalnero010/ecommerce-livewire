@@ -15,10 +15,15 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkExplicitMixed: true
 
+    ignoreErrors:
+        - '#@mixin contains unknown class .*IdeHelper.*#'
+
+
     excludePaths:
         - vendor
         - storage
         - bootstrap/cache
+        - ecs
 
     scanFiles:
         - bootstrap/app.php
