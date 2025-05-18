@@ -16,6 +16,7 @@
         "livewire/volt": "^1.7.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.5",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.4",
         "laravel/pail": "^1.2.2",
@@ -43,10 +44,16 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --write-mixin",
+            "@php artisan ide-helper:meta"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --write-mixin",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -66,6 +73,11 @@
         ],
         "phpstan": [
             "vendor/bin/phpstan analyse --memory-limit=2G --no-progress --no-interaction --error-format=table --ansi"
+        ],
+        "ide-helper": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --write-mixin",
+            "@php artisan ide-helper:meta"
         ]
     },
     "extra": {
