@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Database\Factories\UserFactory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
 
 uses(RefreshDatabase::class);

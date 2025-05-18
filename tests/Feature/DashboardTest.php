@@ -1,8 +1,7 @@
 <?php
 
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Database\Factories\UserFactory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 

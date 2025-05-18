@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 
@@ -24,7 +24,10 @@ test('email can be verified', function (): void {
     $verificationUrl = URL::temporarySignedRoute(
         'verification.verify',
         now()->addMinutes(60),
-        ['id' => $user->id, 'hash' => sha1($user->email)]
+        [
+            'id' => $user->id,
+            'hash' => sha1($user->email),
+        ]
     );
 
     $response = $this->actingAs($user)->get($verificationUrl);
@@ -32,7 +35,7 @@ test('email can be verified', function (): void {
     Event::assertDispatched(Verified::class);
 
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
-    $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+    $response->assertRedirect(route('dashboard', absolute: false) . '?verified=1');
 });
 
 test('email is not verified with invalid hash', function (): void {
@@ -41,7 +44,10 @@ test('email is not verified with invalid hash', function (): void {
     $verificationUrl = URL::temporarySignedRoute(
         'verification.verify',
         now()->addMinutes(60),
-        ['id' => $user->id, 'hash' => sha1('wrong-email')]
+        [
+            'id' => $user->id,
+            'hash' => sha1('wrong-email'),
+        ]
     );
 
     $this->actingAs($user)->get($verificationUrl);
