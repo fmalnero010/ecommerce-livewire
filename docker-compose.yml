@@ -63,6 +63,12 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    redisinsight:
+        image: redislabs/redisinsight:latest
+        ports:
+            - "5540:5540"
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
