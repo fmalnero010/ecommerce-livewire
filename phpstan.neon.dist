@@ -23,7 +23,8 @@ parameters:
         - vendor
         - storage
         - bootstrap/cache
-        - ecs
+        - ecs.php
+        - app/Providers/TelescopeServiceProvider.php
 
     scanFiles:
         - bootstrap/app.php
