@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Database\Factories\UserFactory;
 use Livewire\Volt\Volt as LivewireVolt;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
@@ -12,7 +12,7 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = LivewireVolt::test('auth.login')
         ->set('email', $user->email)
@@ -27,7 +27,7 @@ test('users can authenticate using the login screen', function () {
 });
 
 test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = LivewireVolt::test('auth.login')
         ->set('email', $user->email)
@@ -40,7 +40,7 @@ test('users can not authenticate with invalid password', function () {
 });
 
 test('users can logout', function () {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/logout');
 
