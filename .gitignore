@@ -8,6 +8,8 @@
 /storage/framework/phpstan
 /vendor
 _ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
 .env
 .env.backup
 .env.production
