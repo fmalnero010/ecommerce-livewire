@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Volt;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('password can be updated', function () {
-    $user = User::factory()->create([
+    $user = UserFactory::new()->create([
         'password' => Hash::make('password'),
     ]);
 
@@ -25,7 +25,7 @@ test('password can be updated', function () {
 });
 
 test('correct password must be provided to update password', function () {
-    $user = User::factory()->create([
+    $user = UserFactory::new()->create([
         'password' => Hash::make('password'),
     ]);
 

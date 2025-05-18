@@ -1,0 +1,26 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+    - ./phpstan-baseline.neon
+
+parameters:
+    level: 10
+
+    paths:
+        - app
+        - tests/Feature
+        - tests/Unit
+
+    checkUnionTypes: true
+    reportUnmatchedIgnoredErrors: true
+    inferPrivatePropertyTypeFromConstructor: true
+    checkExplicitMixed: true
+
+    excludePaths:
+        - vendor
+        - storage
+        - bootstrap/cache
+
+    scanFiles:
+        - bootstrap/app.php
+
+    tmpDir: storage/framework/phpstan
